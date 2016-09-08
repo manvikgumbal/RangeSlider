@@ -2,8 +2,8 @@
 //  Slider.swift
 //  SliderDemo
 //
-//  Created by Manvik Gumbal on 07/09/16.
-//  Copyright © 2016 Mindspower. All rights reserved.
+//  Created by Manish Gumbal on 07/09/16.
+//  Copyright © 2016 Deftsoft. All rights reserved.
 //
 
 import UIKit
@@ -97,7 +97,7 @@ protocol SliderDelegate {
             let thumbCenter = setThumbPosition(leftThumbValue, thumb: leftThumb!)
             
             //Set Center according to Value
-            leftThumb!.center.x = thumbCenter-((trackView!.frame.height*3)/2)
+            leftThumb!.center.x = thumbCenter
             leftThumb!.frame.origin.y = -leftThumb!.frame.width/2 + trackView!.frame.height/2
             leftThumb!.layer.cornerRadius = leftThumb!.frame.width/2
             
@@ -129,7 +129,7 @@ protocol SliderDelegate {
             let thumbCenter = setThumbPosition(rightThumbValue, thumb: rightThumb!)
             
             //Set Center according to Value
-            rightThumb!.center.x = thumbCenter-((trackView!.frame.height*3)/2)
+            rightThumb!.center.x = thumbCenter+10
             rightThumb!.frame.origin.y = -rightThumb!.frame.width/2 + trackView!.frame.height/2
             rightThumb!.layer.cornerRadius = rightThumb!.frame.width/2
             
@@ -182,8 +182,8 @@ protocol SliderDelegate {
     //Change Thumb position
     func setThumbPosition(value: CGFloat, thumb: UIImageView) -> CGFloat {
         let widthDouble = thumb.frame.width
-        return CGFloat(trackView!.bounds.width - widthDouble) * (value - minValue) /
-            (maxValue - minValue) + CGFloat(widthDouble / 2.0)
+        return CGFloat(trackView!.frame.width - widthDouble) * (value - minValue) /
+            (maxValue - minValue) + CGFloat(widthDouble / 2)
     }
     
     //MARK: Gesture Recognizer Methods
@@ -215,6 +215,7 @@ protocol SliderDelegate {
     
     func getValue(thumb: UIImageView?) -> Double? {
         if(thumb != nil) {
+            print(thumb!.center.x)
             let value = Double(((thumb!.center.x/trackView!.bounds.width)*(maxValue-minValue))+minValue)
             return Double(round(100*value)/100)
         }
