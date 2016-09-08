@@ -2,8 +2,8 @@
 //  Slider.swift
 //  SliderDemo
 //
-//  Created by Manish on 07/09/16.
-//  Copyright © 2016 Deftsoft. All rights reserved.
+//  Created by Manvik Gumbal on 07/09/16.
+//  Copyright © 2016 Mindspower. All rights reserved.
 //
 
 import UIKit
@@ -215,7 +215,8 @@ protocol SliderDelegate {
     
     func getValue(thumb: UIImageView?) -> Double? {
         if(thumb != nil) {
-            return Double(((thumb!.center.x/trackView!.bounds.width)*(maxValue-minValue))+minValue)
+            let value = Double(((thumb!.center.x/trackView!.bounds.width)*(maxValue-minValue))+minValue)
+            return Double(round(100*value)/100)
         }
         return nil
     }
